@@ -20,13 +20,13 @@ const ProductCard = ({ product }: Props) => {
     console.info("Added to cart");
   }
 
-  function handleRedirectionToProduct() {
-    Router.push("/checkout");
+  function handleRedirectionToProduct(id: number) {
+    Router.push(`/details/${id}`);
   }
 
   return (
     <Card>
-      <CardActionArea onClick={handleRedirectionToProduct}>
+      <CardActionArea onClick={() => handleRedirectionToProduct(product.id)}>
         <CardMedia
           component="img"
           height="140"
