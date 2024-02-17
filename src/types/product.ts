@@ -1,6 +1,9 @@
 export interface Product {
   id: number;
   title: string;
-  description: string;
-  imageUrl: string;
+  year: string;
+}
+
+export interface ProductsState {
+  products: Product[];
 }

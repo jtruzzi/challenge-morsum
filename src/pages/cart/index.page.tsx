@@ -1,9 +1,16 @@
 import React from "react";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  IconButton,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ProductCartItem from "@/components/ProductCartItem";
-import { CartItem } from "@/types/cartItem";
+import { CartItem } from "@/types/cart";
 import { getCartItems } from "@/redux/cartSlice";
 import { emptyCart } from "@/redux/cartSlice";
 
@@ -17,31 +24,32 @@ const Cart = () => {
   }
 
   return (
-    <Stack direction={"column"} gap={3}>
-      <Typography variant="h5" component="h1" sx={{ pb: 3 }}>
-        Cart items
+    <Paper
+      elevation={3}
+      sx={{ p: 4, maxWidth: 600, margin: "auto", mt: 5, mb: 5 }}
+    >
+      <Typography variant="h5" component="h2" sx={{ mb: 3 }}>
+        Your Cart
       </Typography>
-      <Grid rowSpacing={3} columnSpacing={3} container>
-        {cartItems.map((cartItem: CartItem) => {
-          return (
-            <Grid key={cartItem.product.id} item xs={12}>
-              <ProductCartItem cartItem={cartItem} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Stack spacing={2}>
+        {cartItems.map((cartItem: CartItem) => (
+          <ProductCartItem key={cartItem.product.id} cartItem={cartItem} />
+        ))}
+      </Stack>
       {cartItems.length > 0 ? (
         <Button
           color="primary"
           variant="contained"
           onClick={handleCheckoutItems}
+          fullWidth
+          sx={{ mt: 2 }}
         >
           Checkout Items
         </Button>
       ) : (
-        "No items in the cart"
+        <Typography textAlign="center">No items in the cart</Typography>
       )}
-    </Stack>
+    </Paper>
   );
 };
 

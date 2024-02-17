@@ -1,11 +1,7 @@
 import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Product } from "@/types/product";
-import { CartItem } from "../types/cartItem";
-import type { ReduxState } from "./index";
-
-export interface CartState {
-  cartItems: CartItem[];
-}
+import { CartItem, CartState } from "@/types/cart";
+import type { ReduxState } from "@/types/redux";
 
 const initialState: CartState = {
   cartItems: [],
@@ -28,7 +24,10 @@ export const cartSlice = createSlice({
       if (index >= 0) {
         state.cartItems[index].quantity += action.payload.amount;
       } else {
-        state.cartItems.push({ product: action.payload.product, quantity: 1 });
+        state.cartItems.push({
+          product: action.payload.product,
+          quantity: action.payload.amount || 1,
+        });
       }
     },
     removeCartItem: (state: CartState, action: PayloadAction<number>) => {
@@ -45,7 +44,10 @@ export const cartSlice = createSlice({
 export const getCartItemsQuantity = createSelector(
   [(state: ReduxState) => state.cart.cartItems],
   (cartItems) =>
-    cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
+    cartItems.reduce(
+      (total: number, cartItem: CartItem) => total + cartItem.quantity,
+      0
+    )
 );
 
 export const getCartItems = createSelector(

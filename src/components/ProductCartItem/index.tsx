@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { Button, Typography, Stack, Box } from "@mui/material";
 import { removeCartItem } from "@/redux/cartSlice";
-import { CartItem } from "@/types/cartItem";
+import { CartItem } from "@/types/cart";
 
 interface Props {
   cartItem: CartItem;
@@ -19,19 +19,9 @@ const ProductCartItem = ({ cartItem }: Props) => {
 
   return (
     <Stack direction="row">
-      <Image
-        loader={() => product.imageUrl}
-        width="140"
-        height="140"
-        src={product.imageUrl}
-        alt={product.title}
-      />
       <Box sx={{ flexGrow: 1 }}>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {product.description}
+        <Typography gutterBottom variant="h6" component="div">
+          {product.title} ({product.year})
         </Typography>
       </Box>
       <Box

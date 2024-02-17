@@ -1,6 +1,6 @@
 import { createLogger } from "redux-logger";
 
-const middleware = [
+export const loggerMiddleware = [
   createLogger({
     duration: true,
     timestamp: false,
@@ -15,5 +15,3 @@ const middleware = [
     predicate: () => typeof window !== "undefined",
   }),
 ];
-
-export { middleware };
