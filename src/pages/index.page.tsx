@@ -1,31 +1,11 @@
 import React from "react";
-import ProductCard from "@/components/ProductCard";
+import { useSelector } from "react-redux";
 import { Grid, Typography } from "@mui/material";
+import ProductCard from "@/components/ProductCard";
+import { getProducts } from "@/redux/productsSlice";
 
 const Home = () => {
-  const products = [
-    {
-      id: 1,
-      title: "Product title 1",
-      description: "Product description 1",
-      imageUrl:
-        "https://target.scene7.com/is/image/Target/GUEST_dd0c3525-87dc-4080-93a2-279363af8627",
-    },
-    {
-      id: 2,
-      title: "Product title 2",
-      description: "Product description 2",
-      imageUrl:
-        "https://target.scene7.com/is/image/Target/GUEST_dd0c3525-87dc-4080-93a2-279363af8627",
-    },
-    {
-      id: 3,
-      title: "Product title 3",
-      description: "Product description 3",
-      imageUrl:
-        "https://target.scene7.com/is/image/Target/GUEST_dd0c3525-87dc-4080-93a2-279363af8627",
-    },
-  ];
+  const products = useSelector(getProducts);
 
   return (
     <>

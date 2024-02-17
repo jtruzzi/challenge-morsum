@@ -1,5 +1,6 @@
 import React from "react";
 import Router from "next/router";
+import { useDispatch } from "react-redux";
 import {
   Card,
   CardActionArea,
@@ -9,6 +10,7 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { addCartItem } from "@/redux/cartSlice";
 import { Product } from "@/types/product";
 
 interface Props {
@@ -16,8 +18,10 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
+  const dispatch = useDispatch();
+
   function handleAddToCart() {
-    console.info("Added to cart");
+    dispatch(addCartItem({ product: product, amount: 1 }));
   }
 
   function handleRedirectionToProduct(id: number) {
@@ -43,7 +47,7 @@ const ProductCard = ({ product }: Props) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button onClick={handleAddToCart}>Add to Cart</Button>
+        <Button onClick={handleAddToCart}>Add to cart</Button>
       </CardActions>
     </Card>
   );

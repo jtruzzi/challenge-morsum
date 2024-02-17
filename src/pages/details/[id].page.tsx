@@ -1,21 +1,35 @@
-import React from "react";
-import ProductCard from "@/components/ProductCard";
-import { Button, Typography } from "@mui/material";
-import { Product } from "@/types/product";
-import Link from "next/link";
+import React, { useRef } from "react";
+import { useParams } from "next/navigation";
+import { Button, Input, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { addCartItem } from "@/redux/cartSlice";
+import { makeGetProductById } from "@/redux/productsSlice";
 
 const Details = () => {
-  const product: Product = {
-    id: 1,
-    title: "Product title 1",
-    description: "Product description 1",
-    imageUrl:
-      "https://target.scene7.com/is/image/Target/GUEST_dd0c3525-87dc-4080-93a2-279363af8627",
-  };
+  const props = useParams();
+  const dispatch = useDispatch();
+  const productId = props?.id;
+  const inputRef = useRef<HTMLInputElement>(null);
+  const getProductById = makeGetProductById(Number(productId));
+  const product = useSelector(getProductById);
 
-  function handleAddToCart() {
-    console.info("Added to cart");
+  function handleAddCartItem() {
+    if (!!inputRef.current && !!product) {
+      dispatch(
+        addCartItem({
+          product: product,
+          amount: Number(inputRef.current.value) || 0,
+        })
+      );
+    }
   }
+
+  if (!product)
+    return (
+      <Typography gutterBottom variant="h5" component="div">
+        Product not found
+      </Typography>
+    );
 
   return (
     <>
@@ -26,7 +40,16 @@ const Details = () => {
         {product.description}
       </Typography>
 
-      <Button onClick={handleAddToCart}>Add to Cart</Button>
+      <Input
+        inputRef={inputRef}
+        type="number"
+        inputProps={{
+          min: "0",
+        }}
+        defaultValue={0}
+        sx={{ width: "50px" }}
+      />
+      <Button onClick={handleAddCartItem}>Add to cart</Button>
     </>
   );
 };

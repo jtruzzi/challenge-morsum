@@ -1,11 +1,7 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import CartBadge from "./CartBadge";
-import { Button } from "@mui/material";
 import Link from "next/link";
+import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
+import CartBadge from "./CartBadge";
 
 const NavBar = () => {
   return (
@@ -35,7 +31,7 @@ const NavBar = () => {
               </Button>
             </Link>
           </Box>
-          <CartBadge amount={4} />
+          <CartBadge />
         </Toolbar>
       </AppBar>
     </Box>

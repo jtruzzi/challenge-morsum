@@ -1,33 +1,21 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Button,
-  Typography,
-  Stack,
-  Box,
-} from "@mui/material";
-import { Product } from "@/types/product";
-import Link from "next/link";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { Button, Typography, Stack, Box } from "@mui/material";
+import { removeCartItem } from "@/redux/cartSlice";
+import { CartItem } from "@/types/cartItem";
 
 interface Props {
-  product: Product;
+  cartItem: CartItem;
 }
 
-const ProductCartItem = ({ product }: Props) => {
-  function handleIncrease() {
-    console.info("Added 1 to cart");
-  }
+const ProductCartItem = ({ cartItem }: Props) => {
+  const dispatch = useDispatch();
+  const { product } = cartItem;
 
-  function handleDecrease() {
-    console.info("Removed 1 from cart");
+  function handleRemove() {
+    dispatch(removeCartItem(cartItem.product.id));
   }
-
-  const cartAmount = 0;
 
   return (
     <Stack direction="row">
@@ -49,14 +37,14 @@ const ProductCartItem = ({ product }: Props) => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Button onClick={handleDecrease}>-</Button>
-        <Typography variant="body1" component="div" noWrap>
-          {cartAmount}
+        <Typography gutterBottom variant="h5" component="div">
+          ({cartItem.quantity})
         </Typography>
-        <Button onClick={handleIncrease}>+</Button>
+        <Button onClick={handleRemove}>Remove</Button>
       </Box>
     </Stack>
   );
