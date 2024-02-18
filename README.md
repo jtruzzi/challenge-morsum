@@ -8,9 +8,13 @@ The user also needs to be subscribed to the **movies-tv-shows-database** service
 
 **NOTE:** Since regular e-commerce apis from RapidAPI had either a low monthly quota or intermitent fails, I chose to use the movies-tv-shows-database service that worked really well, even though it lacks images and details.
 
+
 ```
 RAPIDAPI_KEY="YOUR API KEY";
 ```
+
+## Live preview:
+This website is live at https://ecommerce-challenge-5ciw2ml88-jtruzzi.vercel.app hosted by Vercel.
 
 ## Decision making:
 
