@@ -21,7 +21,7 @@ const NavBar = () => {
               textDecoration: "none",
             }}
           >
-            TARGET
+            MOVIES CATALOG
           </Typography>
           <Box sx={{ flexGrow: 1 }}></Box>
           <Box sx={{ flexGrow: 1 }}>
