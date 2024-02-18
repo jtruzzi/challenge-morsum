@@ -1,20 +1,14 @@
 import React from "react";
-import Router from "next/router";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Button, Paper, Stack, Typography } from "@mui/material";
 import ProductCartItem from "@/components/ProductCartItem";
 import { CartItem } from "@/types/cart";
 import { getCartItems } from "@/redux/cartSlice";
-import { emptyCart } from "@/redux/cartSlice";
+import { useCartActions } from "./hooks";
 
 const Cart = () => {
   const cartItems = useSelector(getCartItems);
-  const dispatch = useDispatch();
-
-  function handleCheckoutItems() {
-    dispatch(emptyCart());
-    Router.push("/checkout");
-  }
+  const { handleCheckoutItems } = useCartActions();
 
   return (
     <Paper

@@ -12,7 +12,12 @@ The user also needs to be subscribed to the **movies-tv-shows-database** service
 RAPIDAPI_KEY="YOUR API KEY";
 ```
 
+## Decision making:
+
+- I chose to extract the logic for the cart to it's own hook, so it'd be easier to test the ui changes by just mocking the hook. Pending hook specific unit tests.
+
 ## Tests and coverage:
 
 - Tests for the cartSlice selectors and reducers.
 - Tests for the CartBadge to check that consumes the amount of cart items from the store correctly.
+- Tests for the cart page to check that the UI changes based on having products in the cart or not.
