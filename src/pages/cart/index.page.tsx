@@ -1,14 +1,7 @@
 import React from "react";
 import Router from "next/router";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  Button,
-  Grid,
-  IconButton,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, Paper, Stack, Typography } from "@mui/material";
 import ProductCartItem from "@/components/ProductCartItem";
 import { CartItem } from "@/types/cart";
 import { getCartItems } from "@/redux/cartSlice";

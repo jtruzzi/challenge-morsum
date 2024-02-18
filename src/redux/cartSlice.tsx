@@ -30,7 +30,7 @@ export const cartSlice = createSlice({
         });
       }
     },
-    removeCartItem: (state: CartState, action: PayloadAction<number>) => {
+    removeCartItem: (state: CartState, action: PayloadAction<string>) => {
       state.cartItems = state.cartItems.filter(
         (cartItem) => cartItem.product.id !== action.payload
       );
@@ -50,11 +50,6 @@ export const getCartItemsQuantity = createSelector(
     )
 );
 
-export const getCartItems = createSelector(
-  [(state: ReduxState) => state.cart.cartItems],
-  (cartItems) => cartItems
-);
+export const getCartItems = (state: ReduxState) => state.cart.cartItems;
 
 export const { addCartItem, removeCartItem, emptyCart } = cartSlice.actions;
-
-export const selectCart = (state: ReduxState) => state.cart.cartItems;

@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { Button, Typography, Stack, Box } from "@mui/material";
 import { removeCartItem } from "@/redux/cartSlice";

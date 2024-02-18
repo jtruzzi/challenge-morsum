@@ -1,9 +1,5 @@
 export interface Product {
-  id: number;
+  id: string;
   title: string;
   year: string;
-}
-
-export interface ProductsState {
-  products: Product[];
 }

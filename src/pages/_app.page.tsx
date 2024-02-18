@@ -1,3 +1,4 @@
+import React from "react";
 import type { AppProps } from "next/app";
 import { ThemeProvider, createTheme, Container } from "@mui/material";
 import { Provider as ReduxProvider } from "react-redux";

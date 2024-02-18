@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import Link from "next/link";
 import { AppBar, Box, Toolbar, Typography, Button } from "@mui/material";
 import CartBadge from "./CartBadge";
