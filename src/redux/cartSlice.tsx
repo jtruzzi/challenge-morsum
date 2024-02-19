@@ -51,9 +51,10 @@ export const getCartItemsQuantity = createSelector(
 );
 export const getProductCartItemsQuantity = (productId) =>
   createSelector([(state: ReduxState) => state.cart.cartItems], (cartItems) => {
-    return cartItems.find(
-      (cartItem: CartItem) => cartItem.product.id === productId
-    )?.quantity;
+    return (
+      cartItems.find((cartItem: CartItem) => cartItem.product.id === productId)
+        ?.quantity || 0
+    );
   });
 
 export const getCartItems = (state: ReduxState) => state.cart.cartItems;

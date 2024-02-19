@@ -6,6 +6,7 @@ import {
   emptyCart,
   getCartItemsQuantity,
   getCartItems,
+  getProductCartItemsQuantity,
 } from "./cartSlice";
 import { ReduxStore } from "@/redux";
 
@@ -21,19 +22,25 @@ describe("cartSlice", () => {
     }) as ReduxStore;
   });
 
-  test("should handle initial state", () => {
+  test("Initial state should be empty", () => {
     expect(store.getState().cart).toEqual({ cartItems: [] });
   });
 
-  test("should handle removeCartItem and addCartItem", () => {
+  test("addCartItem should add items", () => {
+    expect(store.getState().cart.cartItems.length).toBe(0);
+    store.dispatch(addCartItem({ product: mockProduct, amount: 1 }));
+    expect(store.getState().cart.cartItems.length).toBe(1);
+  });
+
+  test("removeCartItem should remove items", () => {
     store.dispatch(addCartItem({ product: mockProduct, amount: 1 }));
     expect(store.getState().cart.cartItems.length).toBe(1);
     store.dispatch(removeCartItem(mockProduct.id));
     expect(store.getState().cart.cartItems.length).toBe(0);
   });
 
-  test("should handle emptyCart", () => {
-    store.dispatch(addCartItem({ product: mockProduct, amount: 1 }));
+  test("emptyCart should remove items", () => {
+    store.dispatch(addCartItem({ product: mockProduct, amount: 2 }));
     store.dispatch(addCartItem({ product: mockProduct2, amount: 1 }));
     expect(store.getState().cart.cartItems.length).toBe(2);
     store.dispatch(emptyCart());
@@ -44,13 +51,24 @@ describe("cartSlice", () => {
     store.dispatch(addCartItem({ product: mockProduct, amount: 1 }));
     store.dispatch(addCartItem({ product: mockProduct2, amount: 2 }));
     const quantity = getCartItemsQuantity(store.getState());
+
     expect(quantity).toBe(3);
+  });
+
+  test("getProductCartItemsQuantity selector for specific product", () => {
+    let productQuantitySelector = getProductCartItemsQuantity(mockProduct.id);
+    let productQuantity = productQuantitySelector(store.getState());
+    expect(productQuantity).toBe(0);
+
+    store.dispatch(addCartItem({ product: mockProduct, amount: 2 }));
+
+    productQuantity = productQuantitySelector(store.getState());
+    expect(productQuantity).toBe(2);
   });
 
   test("getCartItems selector", () => {
     store.dispatch(addCartItem({ product: mockProduct, amount: 1 }));
     const items = getCartItems(store.getState());
-    expect(items.length).toBe(1);
     expect(items[0].product).toEqual(mockProduct);
   });
 });

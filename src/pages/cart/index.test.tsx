@@ -20,8 +20,8 @@ const mockStore = configureMockStore();
 const initialStateWithItems = {
   cart: {
     cartItems: [
-      { product: { id: "1", title: "Product 1", year: 100 }, quantity: 2 },
-      { product: { id: "2", title: "Product 2", year: 200 }, quantity: 1 },
+      { product: { id: "1", title: "Product 1", year: "2015" }, quantity: 2 },
+      { product: { id: "2", title: "Product 2", year: "2017" }, quantity: 1 },
     ],
   },
 };

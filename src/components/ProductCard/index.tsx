@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Typography, Box, Paper } from "@mui/material";
+import { Button, Typography, Paper } from "@mui/material";
 import { addCartItem, getProductCartItemsQuantity } from "@/redux/cartSlice";
 import { Product } from "@/types/product";
 import Link from "next/link";
-import { CartItem } from "@/types/cart";
 
 interface Props {
   product: Product;
