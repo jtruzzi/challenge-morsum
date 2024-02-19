@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 
-import { Box, Button, Input, Paper, Stack, Typography } from "@mui/material";
+import { Alert, Box, Button, Input, Paper, Typography } from "@mui/material";
 import { addCartItem } from "@/redux/cartSlice";
 import { useGetProductQuery } from "@/redux/productsApi";
 import Link from "next/link";
@@ -31,20 +31,9 @@ const Details = () => {
     }
   }
 
-  if (error) {
-    return <>AN ERROR HAS OCCURRED</>;
-  }
-
   if (isLoading) {
     return <>LOADING</>;
   }
-
-  if (!product)
-    return (
-      <Typography gutterBottom variant="h5" component="div">
-        Product not found
-      </Typography>
-    );
 
   return (
     <Paper elevation={3} sx={{ p: 4, maxWidth: 600, margin: "auto", mt: 5 }}>
@@ -53,42 +42,45 @@ const Details = () => {
           GO BACK
         </Button>
       </Link>
-      <Box
-        sx={{
-          my: 2,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Typography
-          gutterBottom
-          variant="h4"
-          component="div"
-          sx={{ fontWeight: "bold" }}
+      {!!product && (
+        <Box
+          sx={{
+            my: 2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
         >
-          {product.title} ({product.year})
-        </Typography>
-        {/* Consider adding an Image component here if you have product images */}
-        <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-          <Input
-            inputRef={inputRef}
-            type="number"
-            inputProps={{
-              min: "0",
-            }}
-            defaultValue={0}
-            sx={{ mr: 1, width: "100px", height: "40px" }}
-          />
-          <Button
-            onClick={handleAddCartItem}
-            variant="contained"
-            color="primary"
+          <Typography
+            gutterBottom
+            variant="h4"
+            component="div"
+            sx={{ fontWeight: "bold" }}
           >
-            Add to cart
-          </Button>
+            {product.title} ({product.year})
+          </Typography>
+          {/* Consider adding an Image component here if you have product images */}
+          <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
+            <Input
+              inputRef={inputRef}
+              type="number"
+              inputProps={{
+                min: "0",
+              }}
+              defaultValue={0}
+              sx={{ mr: 1, width: "100px", height: "40px" }}
+            />
+            <Button
+              onClick={handleAddCartItem}
+              variant="contained"
+              color="primary"
+            >
+              Add to cart
+            </Button>
+          </Box>
         </Box>
-      </Box>
+      )}
+      {error && <Alert severity="error">{error as React.ReactNode}</Alert>}
     </Paper>
   );
 };

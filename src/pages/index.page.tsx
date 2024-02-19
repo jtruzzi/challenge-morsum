@@ -1,14 +1,10 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Alert, Grid, Typography } from "@mui/material";
 import ProductCard from "@/components/ProductCard";
 import { useGetProductsQuery } from "@/redux/productsApi";
 import { Product } from "@/types/product";
 const Home = () => {
   const { data: products, error, isLoading } = useGetProductsQuery({});
-
-  if (error) {
-    return <>AN ERROR HAS OCCURRED</>;
-  }
 
   if (isLoading) {
     return <>LOADING</>;
@@ -26,6 +22,7 @@ const Home = () => {
           </Grid>
         ))}
       </Grid>
+      {error && <Alert severity="error">{error as React.ReactNode}</Alert>}
     </>
   );
 };

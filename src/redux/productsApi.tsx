@@ -31,6 +31,9 @@ export const productsApi = createApi({
             title: movie.title,
             year: movie.year,
           })) as Product[],
+        transformErrorResponse: (error: any): string => {
+          return error?.data?.message || "Unknown error";
+        },
       }),
       getProduct: builder.query({
         query: (id: string) => {
@@ -52,6 +55,9 @@ export const productsApi = createApi({
             title: response.title,
             year: response.year,
           } as Product;
+        },
+        transformErrorResponse: (error: any): string => {
+          return error?.data?.message || "Unknown error";
         },
       }),
     };

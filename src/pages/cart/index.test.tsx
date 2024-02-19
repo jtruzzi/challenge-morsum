@@ -3,7 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 import Cart from "@/pages/cart/index.page";
-import { useCartActions } from "./hooks";
 
 import "jest";
 
