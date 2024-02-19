@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
-import CartBadge from "./CartBadge";
+import CartBadge from "@/components/NavBar/CartBadge";
 import "@testing-library/jest-dom";
 
 const mockStore = configureStore([]);

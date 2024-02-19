@@ -7,7 +7,7 @@ import {
   getCartItemsQuantity,
   getCartItems,
   getProductCartItemsQuantity,
-} from "./cartSlice";
+} from "@/redux/cartSlice";
 import { ReduxStore } from "@/redux";
 
 const mockProduct = { id: "111", title: "Test Product 111", year: "2015" };

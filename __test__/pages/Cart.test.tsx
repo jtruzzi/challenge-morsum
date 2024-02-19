@@ -1,12 +1,12 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 import Cart from "@/pages/cart/index.page";
 
 import "jest";
 
-jest.mock("./hooks", () => ({
+jest.mock("@/pages/cart/hooks", () => ({
   useCartActions: jest.fn(() => ({
     handleCheckoutItems: jest.fn(),
   })),
