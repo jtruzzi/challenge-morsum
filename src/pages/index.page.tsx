@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <>
       <Typography variant="h4" component="h1" sx={{ pb: 3 }}>
-        List of products
+        List of Movies
       </Typography>
       <Grid rowSpacing={3} columnSpacing={3} container>
         {products?.map((product: Product) => (

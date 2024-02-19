@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Button, Typography, Stack, Box } from "@mui/material";
+import { Button, Typography, Stack, Box, IconButton } from "@mui/material";
 import { removeCartItem } from "@/redux/cartSlice";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { CartItem } from "@/types/cart";
 
 interface Props {
@@ -32,8 +33,10 @@ const ProductCartItem = ({ cartItem }: Props) => {
       >
         <Typography gutterBottom variant="h5" component="div">
           ({cartItem.quantity})
+          <IconButton onClick={handleRemove} aria-label="delete">
+            <DeleteIcon />
+          </IconButton>{" "}
         </Typography>
-        <Button onClick={handleRemove}>Remove</Button>
       </Box>
     </Stack>
   );

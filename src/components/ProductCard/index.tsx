@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Typography, Paper } from "@mui/material";
+import { Paper, IconButton, Badge, Link as MUILink } from "@mui/material";
 import { addCartItem, getProductCartItemsQuantity } from "@/redux/cartSlice";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Product } from "@/types/product";
 import Link from "next/link";
 
@@ -30,18 +31,23 @@ const ProductCard = ({ product }: Props) => {
       }}
     >
       <Link href={`/details/${product.id}`} passHref>
-        <Typography variant="h6" component="a">
+        <MUILink variant="h6">
           {product.title} ({product.year})
-        </Typography>
+        </MUILink>
       </Link>
-      <Button
+      <IconButton
         onClick={handleAddToCart}
-        variant="contained"
         color="primary"
+        aria-label="add to shopping cart"
         sx={{ mt: 2 }}
       >
-        Add to cart {cartItemQuantity > 0 ? `(${cartItemQuantity})` : null}
-      </Button>
+        <Badge
+          badgeContent={cartItemQuantity > 0 ? `${cartItemQuantity}` : 0}
+          color="secondary"
+        >
+          <AddShoppingCartIcon />
+        </Badge>
+      </IconButton>
     </Paper>
   );
 };

@@ -27,7 +27,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 1 }}>
             <Link href="/">
               <Button sx={{ my: 2, color: "white", textDecoration: "none" }}>
-                PRODUCTS
+                MOVIES
               </Button>
             </Link>
           </Box>
