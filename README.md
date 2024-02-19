@@ -1,10 +1,10 @@
 # Movie catalog e-commerce:
 
-##  Summary
+## Summary
 
 This NextJS project (version 13) showcases a movie catalog e-commerce site. It's designed to highlight my skills in web development, particularly with `redux` and `@reduxjs/toolkit` for state management and data fetching, and `@mui/material` for the user interface.
 
-##  Setup Instructions
+## Setup Instructions
 
 Ensure Node.js is installed.
 
@@ -12,8 +12,9 @@ To start the server: `npm i` followed by `npm run dev`.
 
 To run tests: `npm run test`.
 
-In order to run this project locally, you'll need to create an **.env.local** file on the root of the project with the corresponding RapidAPI key. The user also needs to be subscribed to the **movies-tv-shows-database** service.
+To validate code format run `npm run format`.
 
+In order to run this project locally, you'll need to create an **.env.local** file on the root of the project with the corresponding RapidAPI key. The user also needs to be subscribed to the **movies-tv-shows-database** service.
 
 ```
 RAPIDAPI_KEY="YOUR API KEY";
@@ -29,11 +30,10 @@ Tests are centered around critical functionalities like the cart system and UI r
 - Tests for the CartBadge to check that consumes the amount of cart items from the store correctly.
 - Tests for the cart page to check that the UI changes based on having products in the cart or not.
 
-
 ## Live preview:
 
 This website is live at:
 
-https://ecommerce-challenge-ashen.vercel.app 
+https://ecommerce-challenge-ashen.vercel.app
 
 hosted by Vercel.
