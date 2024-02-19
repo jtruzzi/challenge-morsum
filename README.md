@@ -14,7 +14,7 @@ RAPIDAPI_KEY="YOUR API KEY";
 ```
 
 ## Live preview:
-This website is live at https://ecommerce-challenge-5ciw2ml88-jtruzzi.vercel.app hosted by Vercel.
+This website is live at https://ecommerce-challenge-ashen.vercel.app hosted by Vercel.
 
 ## Decision making:
 
