@@ -1,15 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
-import { useDispatch } from "react-redux";
 
 import { Alert, Box, Button, Input, Paper, Typography } from "@mui/material";
-import { addCartItem } from "@/redux/cartSlice";
 import { useGetProductQuery } from "@/redux/productsApi";
 import Link from "next/link";
+import AddToCartForm from "@/pages/details/AddToCartForm";
 
 const Details = () => {
-  const dispatch = useDispatch();
   const props = useParams();
   const productId = props?.id;
   const {
@@ -17,19 +14,6 @@ const Details = () => {
     error,
     isLoading,
   } = useGetProductQuery(String(productId), { skip: !productId });
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  function handleAddCartItem() {
-    if (!!inputRef.current && !!product) {
-      dispatch(
-        addCartItem({
-          product,
-          amount: Number(inputRef.current.value) || 0,
-        })
-      );
-    }
-  }
 
   if (isLoading) {
     return <>LOADING</>;
@@ -59,25 +43,7 @@ const Details = () => {
           >
             {product.title} ({product.year})
           </Typography>
-          {/* Consider adding an Image component here if you have product images */}
-          <Box sx={{ display: "flex", alignItems: "center", mt: 2 }}>
-            <Input
-              inputRef={inputRef}
-              type="number"
-              inputProps={{
-                min: "0",
-              }}
-              defaultValue={0}
-              sx={{ mr: 1, width: "100px", height: "40px" }}
-            />
-            <Button
-              onClick={handleAddCartItem}
-              variant="contained"
-              color="primary"
-            >
-              Add to cart
-            </Button>
-          </Box>
+          <AddToCartForm product={product} />
         </Box>
       )}
       {error && <Alert severity="error">{error as React.ReactNode}</Alert>}

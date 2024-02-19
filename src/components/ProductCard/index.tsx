@@ -1,9 +1,10 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Typography, Box, Paper } from "@mui/material";
-import { addCartItem } from "@/redux/cartSlice";
+import { addCartItem, getProductCartItemsQuantity } from "@/redux/cartSlice";
 import { Product } from "@/types/product";
 import Link from "next/link";
+import { CartItem } from "@/types/cart";
 
 interface Props {
   product: Product;
@@ -11,6 +12,7 @@ interface Props {
 
 const ProductCard = ({ product }: Props) => {
   const dispatch = useDispatch();
+  const cartItemQuantity = useSelector(getProductCartItemsQuantity(product.id));
 
   function handleAddToCart() {
     dispatch(addCartItem({ product: product, amount: 1 }));
@@ -39,7 +41,7 @@ const ProductCard = ({ product }: Props) => {
         color="primary"
         sx={{ mt: 2 }}
       >
-        Add to cart
+        Add to cart {cartItemQuantity > 0 ? `(${cartItemQuantity})` : null}
       </Button>
     </Paper>
   );
