@@ -37,3 +37,8 @@ This website is live at:
 https://ecommerce-challenge-ashen.vercel.app
 
 hosted by Vercel.
+
+## Pending improvements:
+
+- Sync cart slice to localStorage via a redux middleware.
+- Add integration tests mocking up the service.

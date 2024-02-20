@@ -11,5 +11,5 @@ export const reduxStore = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(loggerMiddleware)
-      .concat(productsApi.middleware),
+      .concat(productsApi.middleware as any),
 });
